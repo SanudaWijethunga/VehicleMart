@@ -1,0 +1,31 @@
+.content{
+    display: flex;
+    justify-content: center;
+    gap: 20vw;
+    width: 90%;
+}
+.form-section{
+    width: 40%;
+}
+
+.card{
+    padding: 10px 20px;
+    background-color: aliceblue;
+    margin-bottom: 10px;
+}
+
+.vhicle-card .v-name{
+    font-weight: bold;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+form input, form button{
+    padding: 18px;
+    border-radius: 30px;
+    border: 2px solid gray;
+}
