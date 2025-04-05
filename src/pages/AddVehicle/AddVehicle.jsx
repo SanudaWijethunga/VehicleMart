@@ -1,84 +1,119 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../AddVehicle/AddVehicle.css';
 
+export default function AddVehicle() {
 
-export default function AddVehicle(){
-
-    const[newVehicle, setNewVehicle] = useState({
+    const [newVehicle, setNewVehicle] = useState({
+        model: "",
         vehicleName: "",
         yom: "",
         yor: "",
         price: ""
     });
 
-    const createNewVehicle = (e) =>{
+    const createNewVehicle = (e) => {
         setNewVehicle({
             ...newVehicle,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
-    const[vehicleCollection, setVehicleCollection] = useState([]);
+    const [vehicleCollection, setVehicleCollection] = useState([]);
+    const [message, setMessage] = useState('');
 
-    const[message, setMessage] = useState('');
-
-    const addToCollection = (e) =>{
-        if(!newVehicle.vehicleName || !newVehicle.yom || !newVehicle.yor || !newVehicle.price){
+    const addToCollection = (e) => {
+        e.preventDefault();
+        if (!newVehicle.model || !newVehicle.vehicleName || !newVehicle.yom || !newVehicle.yor || !newVehicle.price) {
             setMessage("All fields are required");
-            e.preventDefault();
-        }
-        else{
+        } else {
             setMessage("");
-            e.preventDefault();
             setVehicleCollection([
                 ...vehicleCollection,
                 newVehicle
-            ])
+            ]);
 
             setNewVehicle({
+                model: "",
                 vehicleName: "",
                 yom: "",
                 yor: "",
                 price: ""
-            })
+            });
         }
     }
 
     const [emptyMessage, setEmptyMessage] = useState('');
 
-    const showCollection = () =>{
-        if(vehicleCollection.length == 0){
-            setEmptyMessage("No added vehicles")
+    const showCollectionEmpty = () => {
+        if (vehicleCollection.length === 0) {
+            setEmptyMessage("No added vehicles");
+        } else {
+            setEmptyMessage("");
         }
     }
 
-    return(
+    useEffect(() => {
+        showCollectionEmpty();
+    }, [vehicleCollection]);
+
+    const [search, setSearch] = useState("");
+
+    const handleSearch = () => {
+        return vehicleCollection.filter(
+            item => Object.values(item).some(value => String(value).toLowerCase().includes(search.toLowerCase()))
+        );
+    }
+
+    return (
         <div className="content">
             <div className="form-section">
                 <h2>Add a new Vehicle</h2>
-                <form action={addToCollection}>
-                    <input 
+                <form onSubmit={addToCollection}>
+                    <select
+                        name="model"
+                        value={newVehicle.model}
+                        onChange={createNewVehicle}
+                    >
+                        <option value="">Select Model</option>
+                        <option>BMW</option>
+                        <option>Mercedes-Benz</option>
+                        <option>Audi</option>
+                        <option>Land Rover</option>
+                        <option>Porsche</option>
+                        <option>Toyota</option>
+                        <option>Honda</option>
+                        <option>Nissan</option>
+                        <option>Subaru</option>
+                        <option>Lexus</option>
+                        <option>Tesla</option>
+                        <option>BYD</option>
+                        <option>Ford</option>
+                        <option>Volkswagen</option>
+                        <option>Ferrari</option>
+                        
+                    </select>
+                    <input
                         type="text"
                         placeholder="Enter vehicle name"
                         name="vehicleName"
                         value={newVehicle.vehicleName}
                         onChange={createNewVehicle}
                     />
-                    <input 
+                    <input
                         type="number"
-                        placeholder="Enter year of made"
+                        placeholder="Enter year of manufacture"
                         name="yom"
                         value={newVehicle.yom}
                         onChange={createNewVehicle}
                     />
-                    <input 
+                    <input
                         type="number"
                         placeholder="Enter year of registration"
                         name="yor"
                         value={newVehicle.yor}
                         onChange={createNewVehicle}
                     />
-                    <input 
+                    <input
                         type="number"
                         placeholder="Enter vehicle price"
                         name="price"
@@ -86,18 +121,27 @@ export default function AddVehicle(){
                         onChange={createNewVehicle}
                     />
                     <p>{message}</p>
-                    <button onClick={addToCollection}>Add vehicle</button>
+                    <button type="submit">Add vehicle</button>
                 </form>
             </div>
             <div className="display-section">
                 <h2>Vehicle Collection</h2>
+                <form>
+                    <input
+                        type="text"
+                        placeholder="Search vehicle"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                </form>
                 <div className="vehicle-card">
-                    {vehicleCollection.map((vehicle, index) => (
-                        <div className = "card" key={index}>
-                            <p className="v-name">{vehicle.vehicleName}</p>
+                    <p className="empty-message">{emptyMessage}</p>
+                    {handleSearch().map((vehicle, index) => (
+                        <div className="card" key={index}>
+                            <p className="v-name">{vehicle.model} - {vehicle.vehicleName}</p>
                             <p>Price: {vehicle.price}</p>
-                            <p>Made year : {vehicle.yom}</p>
-                            <p>Reg year : {vehicle.yor}</p>
+                            <p>Made year: {vehicle.yom}</p>
+                            <p>Registered year: {vehicle.yor}</p>
                         </div>
                     ))}
                 </div>

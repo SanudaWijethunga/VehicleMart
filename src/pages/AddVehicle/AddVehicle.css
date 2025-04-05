@@ -1,31 +1,80 @@
-.content{
+.content {
     display: flex;
     justify-content: center;
     gap: 20vw;
     width: 90%;
+    margin: auto;
+    padding: 20px;
 }
-.form-section{
+
+.form-section,
+.display-section {
     width: 40%;
+    padding: 20px;
+    border-radius: 15px;
 }
 
-.card{
-    padding: 10px 20px;
-    background-color: aliceblue;
-    margin-bottom: 10px;
+.display-section{
+    border: 1px solid gray;
 }
 
-.vhicle-card .v-name{
+.card {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.vehicle-card .v-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+form input,
+form select,
+form button {
+    padding: 15px;
+    border-radius: 25px;
+    border: 2px solid #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+form select {
+    appearance: none;
+}
+
+form input:focus,
+form select:focus {
+    border-color: aliceblue;
+    outline: none;
+}
+
+form button {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
     font-weight: bold;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
+form button:hover {
+    color: black;
+    background-color: aliceblue;
 }
 
-form input, form button{
-    padding: 18px;
-    border-radius: 30px;
-    border: 2px solid gray;
+p {
+    text-align: center;
+    color: rgb(105, 85, 85);
+    font-size: 1rem;
+}
+
+.empty-message{
+    margin-top: 30px;
 }
