@@ -1,22 +1,23 @@
 .content {
     display: flex;
     justify-content: center;
-    gap: 20vw;
+    align-items: center;
+    flex-direction: column;
+    gap: 10vw;
     width: 90%;
     margin: auto;
     padding: 20px;
 }
 
-.form-section,
-.display-section {
-    width: 40%;
+.form-section{
+    width: 40vw;
     padding: 20px;
     border-radius: 15px;
 }
 
 .display-section{
-    border: 1px solid gray;
-}
+    width: 80vw;
+} 
 
 .card {
     padding: 15px;
@@ -32,7 +33,14 @@
     font-size: 1.2rem;
 }
 
-form {
+.vehicle-card{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.v-details {
     display: flex;
     flex-direction: column;
     gap: 1.5vh;
@@ -69,12 +77,18 @@ form button:hover {
     background-color: aliceblue;
 }
 
-p {
-    text-align: center;
+p{
     color: rgb(105, 85, 85);
     font-size: 1rem;
+    text-align: center;
 }
 
-.empty-message{
-    margin-top: 30px;
+.empty-message, .error-message{
+    margin-top: 10px;
+    color: rgb(226, 150, 150);
+}
+
+.search input{
+    width: 100%;
+    margin-bottom: 5vh;
 }
