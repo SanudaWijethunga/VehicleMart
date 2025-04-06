@@ -1,12 +1,56 @@
-.nav{
+.nav {
+    display: flex;
+    justify-content: space-between;
     background-color: aliceblue;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 5vh;
+    align-items: center;
+    padding: 12px 24px;
 }
 
-li{
+.nav ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.nav li:first-child {
+    font-size: 22px;
     font-weight: bold;
-    font-size: 1.5rem;
+    color: #1a1a1a;
+    flex-grow: 1;
+}
+
+.profile-pic {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b2bac5;
 }
