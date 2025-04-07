@@ -131,6 +131,31 @@ export default function AddVehicle() {
         setVehicleCollection(updatedVehicleCollection);
     };
 
+    const[vehicleCount, setVehicleCount] = useState(0);
+
+    const showVehicleCount = () => {
+        setVehicleCount(vehicleCollection.length);
+    }
+
+    useEffect(()=>{
+        showVehicleCount();
+    }, [vehicleCollection])
+
+
+    const[totalVehiclePrice, setTotalVehiclePrice] = useState(0);
+
+    const showTotalVehiclePrice = () => {
+        const total = vehicleCollection.reduce((totalVehiclePrice, newVehicle) => {
+            return totalVehiclePrice += Number(newVehicle.price);
+        }, 0);
+
+        setTotalVehiclePrice(total);
+    }
+
+    useEffect(()=> {
+        showTotalVehiclePrice();
+    }, [vehicleCollection])
+
     return (
         <div className="content">
             <div className="form-section">
@@ -201,6 +226,10 @@ export default function AddVehicle() {
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </form>
+                <div className="summary">
+                    <h3>Total Number of vehicles - {vehicleCount}</h3>
+                    <h3>Total vehicle price -  {totalVehiclePrice}</h3>
+                </div>
                 <p className="empty-message">{emptyMessage}</p>
                 <div className="vehicle-card">
                     {handleSearch().map((vehicle, index) => (

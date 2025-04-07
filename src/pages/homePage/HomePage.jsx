@@ -1,5 +1,5 @@
-import NavBar from "../../components/NavBar/NavBar";
-import AddVehicle from "../AddVehicle/AddVehicle";
+import NavBar from '../../components/NavBar/NavBar';
+import AddVehicle from '../AddVehicle/AddVehicle';
 
 export default function HomePage(){
     return(

@@ -1,0 +1,106 @@
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.text-content h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: gainsboro;
+    color: white;
+    border-radius: 5px;
+}
+
+.color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: gainsboro;
+}
+
+.color h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.color h3 {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #555;
+}
+
+.color img {
+    max-width: 30%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.login-button{
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .text-content,
+    .color {
+        width: 100%;
+        padding: 25px 15px;
+        background-color: white;
+    }
+
+    .text-content h1 {
+        font-size: 22px;
+    }
+
+    .color h1 {
+        font-size: 26px;
+    }
+
+    .color h3 {
+        font-size: 14px;
+    }
+
+    .login-button {
+        width: 100%;
+        max-width: 280px;
+        font-size: 13px;
+    }
+
+    .color img {
+        width: 80%;
+        max-width: 260px;
+    }
+}
