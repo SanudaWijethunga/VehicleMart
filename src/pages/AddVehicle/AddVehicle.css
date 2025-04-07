@@ -9,15 +9,15 @@
     padding: 20px;
 }
 
-.form-section{
+.form-section {
     width: 40vw;
     padding: 20px;
     border-radius: 15px;
 }
 
-.display-section{
+.display-section {
     width: 80vw;
-} 
+}
 
 .card {
     padding: 15px;
@@ -30,10 +30,10 @@
 
 .vehicle-card .v-name {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
-.vehicle-card{
+.vehicle-card {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -49,10 +49,10 @@
 form input,
 form select,
 form button {
-    padding: 15px;
+    padding: 12px;
     border-radius: 25px;
     border: 2px solid #ccc;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
@@ -77,18 +77,129 @@ form button:hover {
     background-color: aliceblue;
 }
 
-p{
+p {
     color: rgb(105, 85, 85);
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: center;
 }
 
-.empty-message, .error-message{
+.empty-message, .error-message {
     margin-top: 10px;
     color: rgb(226, 150, 150);
+    font-size: 0.9rem;
 }
 
-.search input{
+.search input {
     width: 100%;
     margin-bottom: 5vh;
+    font-size: 0.9rem;
+}
+
+h2 {
+    font-size: 1.2rem; 
+}
+
+h3 {
+    font-size: 1rem; 
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        padding: 10px;
+        gap: 5vw;
+    }
+
+    .form-section {
+        width: 80vw;
+        padding: 15px;
+    }
+
+    .display-section {
+        width: 90vw;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .vehicle-card {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .v-details {
+        gap: 3vh;
+    }
+
+    form input,
+    form select,
+    form button {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+
+    .search input {
+        font-size: 0.85rem;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content {
+        padding: 5px;
+        gap: 3vw;
+    }
+
+    .form-section {
+        width: 90vw;
+        padding: 10px;
+    }
+
+    .display-section {
+        width: 95vw;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .v-details {
+        gap: 2vh;
+    }
+
+    form input,
+    form select,
+    form button {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .search input {
+        font-size: 0.8rem;
+    }
+
+    p {
+        font-size: 0.75rem;
+    }
+
+    h2 {
+        font-size: 0.9rem;
+    }
+
+    h3 {
+        font-size: 0.8rem; 
+    }
 }
