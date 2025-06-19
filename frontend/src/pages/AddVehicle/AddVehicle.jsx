@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import '../AddVehicle/AddVehicle.css';
+import axios from "axios";
 
 export default function AddVehicle() {
 
@@ -21,7 +22,7 @@ export default function AddVehicle() {
     const [vehicleCollection, setVehicleCollection] = useState([]);
     const [message, setMessage] = useState('');
 
-    const addToCollection = (e) => {
+    const addToCollection = async (e) => {
         e.preventDefault();
         setMessage("");
 
@@ -91,15 +92,27 @@ export default function AddVehicle() {
             return;
         }
 
-        setVehicleCollection([...vehicleCollection, newVehicle]);
-
-        setNewVehicle({
-            model: "",
-            vehicleName: "",
-            yom: "",
-            yor: "",
-            price: ""
-        });
+        try{
+            const response = await axios.post("http://localhost:5001/api/vehicle/addVehicle", newVehicle);
+            if (response.status === 201){
+                const savedVehicle = response.data.vehicle;
+                setVehicleCollection([...vehicleCollection, savedVehicle]);
+                setNewVehicle({
+                    model: "",
+                    vehicleName: "",
+                    yom: "",
+                    yor: "",
+                    price: ""
+                });
+            }
+            else{
+                setMessage("Unable to add the vehicle");
+            }
+        }
+        catch(error){
+            console.error("Unable to add");
+            setMessage("Unable to add the vehicle");
+        }
     };
 
     const [emptyMessage, setEmptyMessage] = useState('');
@@ -124,12 +137,38 @@ export default function AddVehicle() {
         );
     };
 
-    const handleSoldVehicle = (soldValue) => {
-        const updatedVehicleCollection = vehicleCollection.filter((_, index) => 
-            index !== soldValue
-    );
-        setVehicleCollection(updatedVehicleCollection);
+    const handleSoldVehicle = async (index) => {
+        const soldVehicle = vehicleCollection[index];
+        try {
+            const response = await axios.post("http://localhost:5001/api/vehicle/deleteVehicle", {
+                id: soldVehicle._id
+            });
+
+            if (response.status === 201) {
+                const updatedVehicleCollection = vehicleCollection.filter((_, i) => i !== index);
+                setVehicleCollection(updatedVehicleCollection);
+            } else {
+                setMessage("Failed to delete the vehicle");
+            }
+        } catch (error) {
+            console.error("Delete failed", error);
+            setMessage("Error deleting vehicle");
+        }
     };
+
+    useEffect(() => {
+        const fetchVehicles = async () => {
+            try {
+                const response = await axios.get("http://localhost:5001/api/vehicle/getVehicles");
+                setVehicleCollection(response.data);
+            } catch (error) {
+                console.error("Failed to load vehicles", error);
+                setEmptyMessage("Failed to load saved vehicles");
+            }
+        };
+
+        fetchVehicles();
+    }, []);
 
     const[vehicleCount, setVehicleCount] = useState(0);
 
